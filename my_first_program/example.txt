@@ -1,0 +1,3 @@
+Hello, Rust file operations!
+This is a new line.
+This line is appended to the file.

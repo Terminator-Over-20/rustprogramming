@@ -1,39 +1,34 @@
-/*fn main() {
-   println!("Hello, my name is Jesus Martinez, IM going to the moon!");
+
+use std::process::Command;
+use std::io::{self, Read, Write};
+
+fn executing_os_commands_linux(command_full:&str) {
+    
+    let parts: Vec<&str> = command_full.split_whitespace().collect();
+    let actual_command= parts[0];
+    let arg1 = parts[1];
+
+    let output = Command::new(actual_command).arg(arg1).output().expect("failed to execute command");
+    println!("Command output: {}", String::from_utf8_lossy(&output.stdout));
+    
 }
 
-*/
+/// Accepting from the console
+fn accept_linux_command_from__user() -> String{
 
-fn main() {
-    forloops();
-    arrayfor();
-    let mut counter = 0;
-    let result = loop {
-        counter += 1;
-
-        if counter == 10 {
-            break counter * 2;
-        }
-    };
-
-    println!("Result is: {}", result);
-    println!("Counter is: {}", counter);
+let mut buffer = String::new();
+print!(" Please input your Linux command ");
+io::stdout().flush().unwrap();
+io::stdin().read_line(&mut buffer).unwrap();
+let command = buffer.trim().to_string();
+buffer.clear();
+return command
 }
 
-fn forloops() {
-    let nums = [1, 2, 3, 4, 5];
 
-    // for each loop
-    for num in nums.iter() {
-        println!("{} ", num);
-    }
-}
-fn arrayfor() {
-    let nums = [1, 2, 3, 4, 5];
-
-    // classic loop 
-    for idx in 0..nums.len() { 
-        // start inclusive ..end exclusive (it's fancy notation for range)
-        println!("Element under idx {} := {}", idx, nums[idx]);
-    }
+fn main(){
+let full_command:String = accept_linux_command_from__user(); // read and give back the commands they want to run
+executing_os_commands_linux(&full_command);  
+ // ls -la
+ // echo hello
 }

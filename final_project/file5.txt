@@ -1,0 +1,3 @@
+int sum(x,y);
+void total(x,y);
+void print_to_screen(String q);
